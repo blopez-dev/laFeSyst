@@ -2,7 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
+import SvgIcon from './components/SvgIcon'
+import IconLink from './components/IconLink'
 import './App.css'
+
+const docLinks = [
+  { href: 'https://vite.dev/', label: 'Explore Vite', icon: { type: 'img' as const, src: viteLogo, className: 'logo' } },
+  { href: 'https://react.dev/', label: 'Learn more', icon: { type: 'img' as const, src: reactLogo } },
+]
+
+const socialLinks = [
+  { href: 'https://github.com/vitejs/vite', label: 'GitHub', icon: { type: 'svg' as const, name: 'github-icon' } },
+  { href: 'https://chat.vite.dev/', label: 'Discord', icon: { type: 'svg' as const, name: 'discord-icon' } },
+  { href: 'https://x.com/vite_js', label: 'X.com', icon: { type: 'svg' as const, name: 'x-icon' } },
+  { href: 'https://bsky.app/profile/vite.dev', label: 'Bluesky', icon: { type: 'svg' as const, name: 'bluesky-icon' } },
+]
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,81 +48,23 @@ function App() {
 
       <section id="next-steps">
         <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
+          <SvgIcon name="documentation-icon" className="icon" />
           <h2>Documentation</h2>
           <p>Your questions, answered</p>
           <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
+            {docLinks.map((link) => (
+              <IconLink key={link.href} {...link} />
+            ))}
           </ul>
         </div>
         <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
+          <SvgIcon name="social-icon" className="icon" />
           <h2>Connect with us</h2>
           <p>Join the Vite community</p>
           <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
+            {socialLinks.map((link) => (
+              <IconLink key={link.href} {...link} />
+            ))}
           </ul>
         </div>
       </section>
